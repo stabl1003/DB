@@ -1,2 +1,2 @@
 # DB
-data base data bse build for DDM Usti nad Orlici
+data base data build for DDM Usti nad Orlici
