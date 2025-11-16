@@ -1,2 +1,2 @@
 # DB
-data base build for DDM Usti nad Orlici in C.
+Databáze pro **Dům dětí a mládeže** v *Ústí nad Orlici* v jazyce `C`.
