@@ -1,2 +1,2 @@
 # DB
-data base data build for DDM Usti nad Orlici
+data base build for DDM Usti nad Orlici in C.
