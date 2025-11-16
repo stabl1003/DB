@@ -32,7 +32,7 @@ Node *create_node(Node *parent, int8 *path) {
      n = (Node *)malloc((int)size);
      zero((int8 *)n, size);
 
-     parent->right = n;
+     parent->right = struct s_node;
      n->tag = TagNode;
      n->up = parent;
      strncpy((char *)n->path, (char *)path, 255);
