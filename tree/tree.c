@@ -40,6 +40,19 @@ Node *create_node(Node *parent, int8 *path) {
      return n;
 }
 
+Leaf *find_last_linear(Node *parent) {
+    Leaf *l;
+    
+    assert(parent);
+    
+}
+
+Leaf *create_leaf(Tree *right, int8 *key, int16 size) {
+    Leaf *l;
+    Node *n;
+    assert(right);
+}
+
 int main() {
   Node *n, *n2;
 
