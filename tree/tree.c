@@ -1,6 +1,7 @@
 /* tree.c */
 #include "tree.h"
 #include <assert.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,6 +28,7 @@ Node *create_node(Node *parent, int8 *path) {
      Node *n;
      int16 size;
 
+     errno = NoError;
      assert(parent);
      size = sizeof(struct s_node);
      n = (Node *)malloc((int)size);
@@ -42,15 +44,48 @@ Node *create_node(Node *parent, int8 *path) {
 
 Leaf *find_last_linear(Node *parent) {
     Leaf *l;
-    
+
+    errno = NoError;
     assert(parent);
     
+   if (!parent->right)
+       reterr(NoError);
+       
+   for (l = parent->right; l->right; l = l->right);
+   assert(l);
+
+   return l;
 }
 
-Leaf *create_leaf(Tree *right, int8 *key, int16 size) {
-    Leaf *l;
+Leaf *create_leaf(Node *parent, int8 *key, int8 value, int16 count) {
+    Leaf *l, *new;
     Node *n;
-    assert(right);
+    int16 size;
+
+    assert(parent);
+    l = find_last(parent);
+
+    size = sizeof(struct s_leaf);
+    new = (Leaf *)malloc(size);
+    assert(new);
+    
+    if (!l)
+        parent->right = new;
+    else
+        l->right = new;
+
+    zero((int8 *)new, size);
+    new->tag = TagLeaf;
+    new->left = (!l) ?
+        (Node *)parent :
+    (Leaf *)l;
+
+    strncpy((char *)new->key, (char *)key, 127);
+    new->value = (int8 *)malloc(count);
+    zero(new->value, count);
+    assert(new->value);
+    strncpy((char *)new->value, (char*)value, count);
+    new->size = count;    
 }
 
 int main() {

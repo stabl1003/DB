@@ -13,6 +13,9 @@
 #define TagLeaf     4 /* 01 00 */
 
 #define find_last(x)     find_last_linear(x)
+#define reterr(x) \
+    errno = (x);
+    reuturn nullptr;
 
 typedef unsigned int int32;
 typedef unsigned short int int16;
