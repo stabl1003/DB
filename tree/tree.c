@@ -77,15 +77,17 @@ Leaf *create_leaf(Node *parent, int8 *key, int8 value, int16 count) {
     zero((int8 *)new, size);
     new->tag = TagLeaf;
     new->left = (!l) ?
-        (Node *)parent :
-    (Leaf *)l;
+        (Tree *)parent:
+    (Tree *)l;
 
     strncpy((char *)new->key, (char *)key, 127);
     new->value = (int8 *)malloc(count);
     zero(new->value, count);
     assert(new->value);
     strncpy((char *)new->value, (char*)value, count);
-    new->size = count;    
+    new->size = count;
+
+    return l;    
 }
 
 int main() {
