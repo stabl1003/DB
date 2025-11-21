@@ -1,6 +1,7 @@
 /* tree.h */
 #define _GNU_SOURCE
 #include <stdio.h>
+#include <stdint.h>
 #include <stddef.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -53,4 +54,3 @@ union u_tree {
   Leaf l;
 };
 typedef union u_tree Tree;
-

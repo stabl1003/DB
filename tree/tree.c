@@ -102,7 +102,7 @@ int main() {
   key = (int8 *)"stabl";
   value = (int8 *)"abc77301aa";
   size = (int16 *)strlen((char *)value);
-  l1 = create_leaf(n2, key, value, (int16) size);
+  l1 = create_leaf(n2, key, value, (long) size);
   assert(l1);
 
   printf("%s\n", l1->value);
@@ -110,7 +110,7 @@ int main() {
   key = (int8 *)"jan";
   value = (int8 *)"abc10183bb";
   size = (int16 *)strlen((char *)value);
-  l2 = create_leaf(n2, key, value, (int16) size);
+  l2 = create_leaf(n2, key, value, (long) size);
   assert(l2);
 
   printf("%s\n", l2->key);
