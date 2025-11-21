@@ -16,7 +16,7 @@
 #define NoError     0
 
 typedef void* Nullptr;
-Nullptr nullptr = 0;
+Nullptr nullptr_n = 0;
 
 #define find_last(x)     find_last_linear(x)
 #define reterr(x) \
