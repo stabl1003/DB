@@ -47,7 +47,7 @@ Leaf *find_last_linear(Node *parent) {
     assert(parent);
     
    if (!parent->right)
-       reterr(NoError);
+       return (NoError);
        
    for (l = parent->right; l->right; l = l->right);
    assert(l);
@@ -84,7 +84,7 @@ Leaf *create_leaf(Node *parent, int8 *key, int8 *value, int16 count) {
     strncpy((char *)new->value, (char*)value, count);
     new->size = count;
 
-    return l;    
+    return new;    
 }
 
 int main() {
