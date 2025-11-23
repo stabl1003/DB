@@ -1,8 +1,5 @@
 /* tree.c */
 #include "tree.h"
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
 
 Tree root = { .n = {
     .tag = (TagRoot | TagNode),
