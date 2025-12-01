@@ -16,12 +16,12 @@
 #include <netinet/in.h>
 
 #define HOST      "127.0.0.1"
-#define PORT      12000   
+#define PORT      "25000"   
 
 typedef unsigned int int32;
 typedef unsigned short int int16;
 typedef unsigned char int8;
 
-void mainloop(void);
+void mainloop(int16);
 int main(int, char**);
 #endif
