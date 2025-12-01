@@ -24,3 +24,4 @@ typedef unsigned char int8;
 
 void mainloop(void);
 int main(int, char**);
+#endif
