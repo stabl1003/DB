@@ -8,7 +8,7 @@ void mainloop(int16 port) {
     int s;
 
     sock.sin_family = AF_INET;
-    sock.sin_port = htons(port);
+    sock.sin_port = htons((int)port);
     sock.sin_addr.s_addr = INADDR_ANY;
 
     s = socket(AF_INET, SOCK_STREAM, 0);
@@ -20,6 +20,8 @@ void mainloop(int16 port) {
     errno = 0;
     if (listen(s, 20))
         assert_perror(errno);
+
+    scontiunation = false;
 }
 
 int main(int argc, char *argv[]){
