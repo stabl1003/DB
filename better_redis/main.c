@@ -1,15 +1,19 @@
 /* main.c */
 #include "br.h"
+#include <arpa/inet.h>
 
 bool scontiunation;
 
-void mainloop(int16 port) {
+void mainloop(int s) {
+}
+
+int initserver(int16 port) {
     struct sockaddr_in sock;
     int s;
 
     sock.sin_family = AF_INET;
     sock.sin_port = htons((int)port);
-    sock.sin_addr.s_addr = INADDR_ANY;
+    sock.sin_addr.s_addr = inet_addr(HOST);
 
     s = socket(AF_INET, SOCK_STREAM, 0);
     assert(s > 0);
@@ -20,13 +24,16 @@ void mainloop(int16 port) {
     errno = 0;
     if (listen(s, 20))
         assert_perror(errno);
+    
+    log("server istening on %s:%d", HOST, port);
 
-    scontiunation = false;
+    return s;
 }
 
 int main(int argc, char *argv[]){
     char *sport;
     int16 port;
+    int s;
 
     if (argc < 2)
         sport = PORT;
@@ -34,10 +41,12 @@ int main(int argc, char *argv[]){
         sport = argv[1];
 
     port = (int16)atoi(sport);
-    
+
+    s = initserver(port);
+
     scontiunation = true;
     while(scontiunation)
-        mainloop(port);
+        mainloop(s);
 
     return 0;
 }
