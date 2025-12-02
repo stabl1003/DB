@@ -20,9 +20,6 @@
 #define HOST      "127.0.0.1"
 #define PORT      "12000"   
 
-#define log(x, args...)  \
-    printf(x, args)
-
 typedef unsigned int int32;
 typedef unsigned short int int16;
 typedef unsigned char int8;

@@ -25,7 +25,7 @@ int initserver(int16 port) {
     if (listen(s, 20))
         assert_perror(errno);
     
-    log("server istening on %s:%d", HOST, port);
+    printf("server listening on %s:%d\n", HOST, port);
 
     return s;
 }
