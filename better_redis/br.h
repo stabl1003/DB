@@ -24,6 +24,12 @@ typedef unsigned int int32;
 typedef unsigned short int int16;
 typedef unsigned char int8;
 
+struct s_client {
+  int s;
+  char ip[16];
+  int16 port;
+};
+typedef s_client CLient;
 void mainloop(int);
 int initserver(int16);
 int main(int, char**);
