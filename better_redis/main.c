@@ -1,26 +1,25 @@
 /* main.c */
 #include "br.h"
-#include <netinet/in.h>
-#include <stdio.h>
-#include <sys/socket.h>
-#include <unistd.h>
 
 bool scontiunation;
 
 void mainloop(int s) {
     struct sockaddr_in cli;
-    int len;
+    int32 len;    
     int s2;
     char *ip;
     int16 port;
 
-    s2 = accept(s,(struct sockaddr *)&cli,&len);
+    s2 = accept(s,(struct sockaddr *)&cli, (unsigned int *)&len);
     if (s2 < 0) 
         return;
 
-    port = (int16)htons((int)cli->sin_port);
+    port = (int16)htons((int)cli.sin_port);
+    ip = inet_ntoa(cli.sin_addr);
     
-    printf("");
+    printf("connection  form %s:%d\n", ip, port);
+
+    return;
 }
 
 int initserver(int16 port) {

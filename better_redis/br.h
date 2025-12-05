@@ -29,7 +29,8 @@ struct s_client {
   char ip[16];
   int16 port;
 };
-typedef s_client CLient;
+typedef struct s_client Client;
+
 void mainloop(int);
 int initserver(int16);
 int main(int, char**);
