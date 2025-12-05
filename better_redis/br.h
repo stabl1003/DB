@@ -31,7 +31,9 @@ struct s_client {
 };
 typedef struct s_client Client;
 
+void zero(int8 *, int16, int16);
 void mainloop(int);
+void child_loop(Client*);
 int initserver(int16);
 int main(int, char**);
 #endif

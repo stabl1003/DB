@@ -2,6 +2,24 @@
 #include "br.h"
 
 bool scontiunation;
+bool ccontinuation;
+
+void zero(int8* buf, int16, int16 size) {
+    int8 *p;
+    int16 n;
+    
+    for (n=0, p=buf; n<size; n++, p++ )
+        *p = 0;
+    
+    return;
+    
+}
+
+void child_loop(Client *cli) {
+    sleep(1);
+
+    return;
+}
 
 void mainloop(int s) {
     struct sockaddr_in cli;
@@ -9,7 +27,9 @@ void mainloop(int s) {
     int s2;
     char *ip;
     int16 port;
-
+    Client *client;
+    pid_t pid;
+    
     s2 = accept(s,(struct sockaddr *)&cli, (unsigned int *)&len);
     if (s2 < 0) 
         return;
@@ -19,6 +39,33 @@ void mainloop(int s) {
     
     printf("connection  form %s:%d\n", ip, port);
 
+
+    client = (Client *)malloc(sizeof(struct s_client));
+    assert(client);
+
+    zero((int8 *)client, sizeof(struct s_client), 0);
+    client->s = s; 
+    client->port = port;
+    strncpy(client->ip, ip, 15);
+
+    pid = fork();
+    if (pid) {
+        free(client);
+        
+        return;
+    } else {
+        dprintf(s2, "1000 connected to server\n");
+        ccontinuation = true;
+        while (ccontinuation)
+            child_loop(client);
+
+        close(s2);
+        free(client);
+
+        return;      
+    }
+    
+    
     return;
 }
 
