@@ -15,8 +15,24 @@ void zero(int8* buf, int16, int16 size) {
     
 }
 
+abc = {
+    func_select, "select"
+}
+
 void child_loop(Client *cli) {
-    sleep(1);
+    int8 buf[256];
+    int8 n;
+    int8 *p;
+
+    zero(buf, 256, 0);
+    read(cli->s, (char *)buf, 255);    
+
+    for (p = buf;
+        *p
+            &&;
+        p++
+        
+    )
 
     return;
 }
