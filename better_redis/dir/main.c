@@ -16,9 +16,9 @@ void zero(int8* buf, int16, int16 size) {
     
 }
 
-/*abc = {
+abc = {
     func_select, "select"
-};*/
+};
 
 void child_loop(Client *cli) {
     int8 buf[256];
