@@ -17,3 +17,4 @@ main.o: main.c
 
 clean:
 	rm -rf *.o main
+	rm -rf *.o tree
