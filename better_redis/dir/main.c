@@ -16,9 +16,9 @@ void zero(int8* buf, int16, int16 size) {
     
 }
 
-abc = {
+/*abc = {
     func_select, "select"
-}
+};*/
 
 void child_loop(Client *cli) {
     int8 buf[256];
@@ -30,7 +30,7 @@ void child_loop(Client *cli) {
     read(cli->s, (char *)buf, 255);    
     n = (int16)strlen((char *)buf);
     if (n > 256)
-        n = 254
+        n = 254;
 
     for (p = buf;
         (*p)
@@ -41,12 +41,12 @@ void child_loop(Client *cli) {
         p++
     );
 
-    zero(cmd, 256); zero(folder, 256); zero(ags, 256);
-     
+    zero(cmd, 256, 0); zero(folder, 256,0); zero(args, 256, 0);
+    
     if (!(*p) || (!n)) {
         strncpy((char *)cmd, (char *)buf, 255);
         
-    } else if (*p == ' ') || (*p == '\n') || (*p == '\r') {
+    } else if (*p == ' ' || *p == '\n' || *p == '\r') {
         *p = 0;
         strncpy((char *)folder, (char *)buf, 255);
     }  
