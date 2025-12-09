@@ -1,6 +1,5 @@
 /* main.c */
 #include "br.h"
-#include <string.h>
 
 bool scontiunation;
 bool ccontinuation;
@@ -23,7 +22,7 @@ abc = {
 void child_loop(Client *cli) {
     int8 buf[256];
     int8 n;
-    int8 *p;
+    int8 *p, *f;
     int8 cmd[256], folder[256], args[256];
 
     zero(buf, 256, 0);
@@ -41,7 +40,7 @@ void child_loop(Client *cli) {
         p++
     );
 
-    zero(cmd, 256, 0); zero(folder, 256,0); zero(args, 256, 0);
+    zero(cmd, 256,0); zero(folder, 256, 0); zero(args, 256, 0);
     
     if (!(*p) || (!n)) {
         strncpy((char *)cmd, (char *)buf, 255);
@@ -50,7 +49,26 @@ void child_loop(Client *cli) {
         *p = 0;
         strncpy((char *)folder, (char *)buf, 255);
     }  
+/////////////////////////////////
+    for (p = buf;
+        (*p)
+            && (n--)
+            && (*p == ' '
+            && (*p == '\n')
+            && (*p == '\r'));
+        p++
+    );
+
+    zero(cmd, 256,0); zero(folder, 256, 0); zero(args, 256, 0);
     
+    if (!(*p) || (!n)) {
+        strncpy((char *)cmd, (char *)buf, 255);
+        
+    } else if (*p == ' ' || *p == '\n' || *p == '\r') {
+        *p = 0;
+        strncpy((char *)folder, (char *)buf, 255);
+    }  
+ 
     return;
 }
 
