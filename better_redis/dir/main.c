@@ -1,5 +1,7 @@
 /* main.c */
 #include "br.h"
+#include <stdio.h>
+#include <string.h>
 
 bool scontiunation;
 bool ccontinuation;
@@ -14,10 +16,6 @@ void zero(int8* buf, int16, int16 size) {
     return;
     
 }
-
-abc = {
-    func_select, "select"
-};
 
 void child_loop(Client *cli) {
     int8 buf[256];
@@ -34,41 +32,60 @@ void child_loop(Client *cli) {
     for (p = buf;
         (*p)
             && (n--)
-            && (*p == ' '
-            && (*p == '\n')
-            && (*p == '\r'));
-        p++
+            && (*p != ' ')
+            && (*p != '\n')
+            && (*p != '\r');)
+    ;
+        p++;
     );
 
     zero(cmd, 256,0); zero(folder, 256, 0); zero(args, 256, 0);
     
     if (!(*p) || (!n)) {
         strncpy((char *)cmd, (char *)buf, 255);
+        goto done;
         
     } else if (*p == ' ' || *p == '\n' || *p == '\r') {
         *p = 0;
-        strncpy((char *)folder, (char *)buf, 255);
+        strncpy((char *)cmd, (char *)buf, 255);
     }  
 /////////////////////////////////
-    for (p = buf;
+    for (p++, f = p;
         (*p)
             && (n--)
-            && (*p == ' '
-            && (*p == '\n')
-            && (*p == '\r'));
-        p++
+            && (*p != ' ')
+            && (*p != '\n')
+            && (*p != '\r');)
+    ;
+        p++;
     );
 
-    zero(cmd, 256,0); zero(folder, 256, 0); zero(args, 256, 0);
     
     if (!(*p) || (!n)) {
-        strncpy((char *)cmd, (char *)buf, 255);
+        strncpy((char *)folder, (char *)f, 255);
+        goto done;
         
     } else if (*p == ' ' || *p == '\n' || *p == '\r') {
         *p = 0;
-        strncpy((char *)folder, (char *)buf, 255);
-    }  
- 
+        strncpy((char *)folder, (char *)f, 255);
+    }
+
+    p++;
+    if (*p) {
+        strncpy((char *)args, (char *)p, 255);
+       for (p = args; (
+           (*p)
+           && (*p != '\n')
+           && (*p != '\r')); p++)
+
+          * p = 0;
+    }
+
+    done:
+        dprintf(cli->s, "cmd:\t%s\n", cmd);
+        dprintf(cli->s, "folder:\t%s\n", folder);
+        dprintf(cli->s, "args:\t%s\n", args);
+    
     return;
 }
 
