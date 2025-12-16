@@ -34,9 +34,9 @@ void child_loop(Client *cli) {
             && (n--)
             && (*p != ' ')
             && (*p != '\n')
-            && (*p != '\r');)
-    ;
-        p++;
+            && (*p != '\r');
+
+        p++
     );
 
     zero(cmd, 256,0); zero(folder, 256, 0); zero(args, 256, 0);
@@ -55,9 +55,9 @@ void child_loop(Client *cli) {
             && (n--)
             && (*p != ' ')
             && (*p != '\n')
-            && (*p != '\r');)
-    ;
-        p++;
+            && (*p != '\r');
+    
+        p++
     );
 
     
