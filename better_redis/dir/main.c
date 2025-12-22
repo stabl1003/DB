@@ -23,6 +23,9 @@ void child_loop(Client *cli) {
     int8 *p, *f;
     int8 cmd[256], folder[256], args[256];
 
+    //write(cli->s, "hey\n", 4);
+    //exit(0);
+
     zero(buf, 256, 0);
     read(cli->s, (char *)buf, 255);    
     n = (int16)strlen((char *)buf);
@@ -112,7 +115,7 @@ void mainloop(int s) {
     assert(client);
 
     zero((int8 *)client, sizeof(struct s_client), 0);
-    client->s = s; 
+    client->s = s2; 
     client->port = port;
     strncpy(client->ip, ip, 15);
 
