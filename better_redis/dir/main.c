@@ -1,7 +1,5 @@
 /* main.c */
 #include "br.h"
-#include <stdio.h>
-#include <string.h>
 
 bool scontiunation;
 bool ccontinuation;
